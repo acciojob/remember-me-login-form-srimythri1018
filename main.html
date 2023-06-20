@@ -1,69 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login Form</title>
+  <title>Login Form</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="script.js"></script>
 </head>
 <body>
-    <h1>Login Form</h1>
-    <form id="loginForm">
-        <label for="username">Username:</label>
-        <input type="text" id="username" placeholder="Username">
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" placeholder="Password">
-
-        <label for="checkbox">
-            <input type="checkbox" id="checkbox"> Remember me
-        </label>
-
-        <input type="submit" id="submit" value="Submit">
-    </form>
-
-    <script>
-        // Check if there are saved details in local storage
-        const savedUsername = localStorage.getItem('username');
-        const savedPassword = localStorage.getItem('password');
-
-        // If saved details exist, show the login button for existing user
-        if (savedUsername && savedPassword) {
-            const existingButton = document.createElement('button');
-            existingButton.id = 'existing';
-            existingButton.textContent = 'Login as existing user';
-            document.body.appendChild(existingButton);
-        }
-
-        // Handle form submission
-        const form = document.getElementById('loginForm');
-        form.addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            // Retrieve form values
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const rememberMe = document.getElementById('checkbox').checked;
-
-            if (rememberMe) {
-                // Save username and password to local storage
-                localStorage.setItem('username', username);
-                localStorage.setItem('password', password);
-            } else {
-                // Remove saved username and password from local storage
-                localStorage.removeItem('username');
-                localStorage.removeItem('password');
-            }
-
-            // Show the logged in message
-            alert('Logged in as ' + username);
-        });
-
-        // Handle login as existing user button click
-        const existingButton = document.getElementById('existing');
-        if (existingButton) {
-            existingButton.addEventListener('click', function () {
-                const savedUsername = localStorage.getItem('username');
-                alert('Logged in as ' + savedUsername);
-            });
-        }
-    </script>
+  <h1>Login Form</h1>
+  <form>
+    <label for="username">Username:</label>
+    <input type="text" placeholder="Username" id="username" />
+    <br />
+    <label for="password">Password:</label>
+    <input type="password" placeholder="Password" id="password" />
+    <br />
+    <label for="checkbox">
+      <input type="checkbox" id="checkbox" />
+      Remember me
+    </label>
+    <br />
+    <input type="submit" value="Submit" id="submit" />
+    <br />
+    <button id="existing" style="display: none">Login as existing user</button>
+  </form>
 </body>
 </html>
